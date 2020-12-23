@@ -2,6 +2,8 @@
 .vs/
 src/WebShop.WebUI/obj/
 src/WebShop.Infrastructure/obj/
+src/WebShop.Domain/obj/
 //Tests
 tests/WebShop.WebUI.Tests/obj/
 tests/WebShop.Infrastructure.Tests/obj/
+tests/WebShop.Domain.Tests/obj/
