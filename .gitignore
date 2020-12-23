@@ -3,7 +3,9 @@
 src/WebShop.WebUI/obj/
 src/WebShop.Infrastructure/obj/
 src/WebShop.Domain/obj/
+src/WebShop.Application/obj/
 //Tests
 tests/WebShop.WebUI.Tests/obj/
 tests/WebShop.Infrastructure.Tests/obj/
 tests/WebShop.Domain.Tests/obj/
+tests/WebShop.Application.Tests/obj/
