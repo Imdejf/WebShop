@@ -1,0 +1,5 @@
+//Project
+.vs/
+src/WebShop.WebUI/obj/
+//Tests
+tests/WebShop.WebUI.Tests/obj/
