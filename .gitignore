@@ -1,5 +1,7 @@
 //Project
 .vs/
 src/WebShop.WebUI/obj/
+src/WebShop.Infrastructure/obj/
 //Tests
 tests/WebShop.WebUI.Tests/obj/
+tests/WebShop.Infrastructure.Tests/obj/
