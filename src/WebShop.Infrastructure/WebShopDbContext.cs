@@ -5,6 +5,9 @@ namespace WebShop.Infrastructure
 {
     public class WebShopDbContext : DbContext
     {
+        #region DbSet
+        public DbSet<User> Users { get; set; }
+        #endregion
         public WebShopDbContext(DbContextOptions<WebShopDbContext> options) : base(options) { }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace WebShop.Domain.Entities
 {
     public class EntitiesObject
     {
-        int Id { get; set; }
+       public int Id { get; set; }
     }
 }
