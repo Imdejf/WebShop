@@ -7,6 +7,7 @@ namespace WebShop.Infrastructure
     {
         #region DbSet
         public DbSet<User> Users { get; set; }
+        public DbSet<Account> Accounts { get; set; }
         #endregion
         public WebShopDbContext(DbContextOptions<WebShopDbContext> options) : base(options) { }
 
