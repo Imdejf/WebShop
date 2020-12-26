@@ -4,7 +4,8 @@ using System.Text;
 
 namespace WebShop.Domain.Entities
 {
-    class Account
+    public class Account : EntitiesObject
     {
+        public User AccountHolder { get; set; }
     }
 }
