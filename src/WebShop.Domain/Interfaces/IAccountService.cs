@@ -6,7 +6,7 @@ namespace WebShop.Domain.Interfaces
 {
     public interface IAccountService : IDataService<Account>
     {
-        Task<Account> GetByUserName(string userName);
+        Task<Account> GetByUsername(string username);
         Task<Account> GetByEmail(string email);
     }
 }

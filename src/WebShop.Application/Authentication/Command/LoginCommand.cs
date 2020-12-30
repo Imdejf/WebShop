@@ -1,8 +1,4 @@
 ﻿using MediatR;
-using System;
-using System.Net.Http;
-using System.Threading.Tasks;
-using System.Windows.Input;
 
 namespace WebShop.Application.Authentication.Command
 {

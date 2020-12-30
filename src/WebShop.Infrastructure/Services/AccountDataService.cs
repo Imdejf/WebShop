@@ -58,7 +58,7 @@ namespace WebShop.Infrastructure.Services
             }
         }
 
-        public async Task<Account> GetByUserName(string userName)
+        public async Task<Account> GetByUsername(string userName)
         {
            using(WebShopDbContext context = _contextFactory.CreateDbContext())
             {

@@ -3,5 +3,11 @@
 @{
     ViewData["Title"] = "LoginPage";
 }
+<h1>LoginPage</h1>
+<form method="post">
+    <input type="text" asp-for="login.Username" placeholder="Username" />
+    <input type="text" asp-for="login.Password" placeholder="Password" />
+    <button type="submit">Submit</button>
+</form>
 
-<input type="text" asp-for="" placeholder="Username/Email" />
+

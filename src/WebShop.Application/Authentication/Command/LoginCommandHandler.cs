@@ -1,18 +1,7 @@
 ﻿using MediatR;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Xml.XPath;
-using WebShop.Application.Authentication.Queries;
-using WebShop.Application.Models.Login;
-using WebShop.Domain.Entities;
 using WebShop.Domain.Services;
-using WebShop.Infrastructure;
 
 namespace WebShop.Application.Authentication.Command
 {

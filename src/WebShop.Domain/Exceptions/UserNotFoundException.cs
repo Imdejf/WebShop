@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Runtime.Serialization;
-using System.Text;
-using WebShop.Domain.Entities;
 
-namespace WebShop.Application.Common.Exceptions
+namespace WebShop.Domain.Exceptions
 {
     public class UserNotFoundException : Exception
     {

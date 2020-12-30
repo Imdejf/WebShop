@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Runtime.Serialization;
-using System.Text;
-using System.Windows.Input;
-using WebShop.Domain.Entities;
 
-namespace WebShop.Application.Common.Exceptions
+namespace WebShop.Domain.Exceptions
 {
     public class InvalidPasswordException : Exception
     {
