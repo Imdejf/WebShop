@@ -20,7 +20,7 @@ namespace WebShop.WebUI.Pages.LoginPage
         {
            
         }
-        public async Task OnPostAsync()
+        public async Task<IActionResult> OnPostAsync()
         {
             if(login.Username != null || login.Password != null)
             {
@@ -28,11 +28,12 @@ namespace WebShop.WebUI.Pages.LoginPage
                 { Username = login.Username, 
                   Password = login.Password 
                 });
-                if(task != null)
+                if(task != 0)
                 {
-
+                   return RedirectToPage("/Home", "Display");
                 }
             }
+            return Page();
         }
     }
 }
