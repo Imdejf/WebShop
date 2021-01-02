@@ -7,5 +7,6 @@ namespace WebShop.Domain.Entities
     public class Account : EntitiesObject
     {
         public User AccountHolder { get; set; }
+        public Role RoleHolder { get; set; }
     }
 }
