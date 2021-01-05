@@ -2,7 +2,7 @@
 
 namespace WebShop.WebUI.Pages
 {
-    public class HomeModel : PageModel
+    public class MenuModel : PageModel
     {
         public void OnGet()
         {

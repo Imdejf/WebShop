@@ -54,6 +54,7 @@ namespace WebShop.Infrastructure.Services
             {
                 return await context.Accounts
                     .Include(a => a.AccountHolder)
+                    .Include(a => a.RoleHolder)
                     .FirstOrDefaultAsync(a => a.AccountHolder.Email == email);
             }
         }
@@ -64,6 +65,7 @@ namespace WebShop.Infrastructure.Services
             {
                 return await context.Accounts
                     .Include(a => a.AccountHolder)
+                    .Include(a => a.RoleHolder)
                     .FirstOrDefaultAsync(a => a.AccountHolder.UserName == userName);
             }
         }

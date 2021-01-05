@@ -1,14 +1,21 @@
 using MediatR;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.VisualStudio.Web.CodeGeneration.Contracts.Messaging;
+using System.Diagnostics;
 using System.Reflection;
 using WebShop.Application.Authentication.Command;
+using WebShop.Application.Common.Handlers;
+using WebShop.Application.Common.Requirement;
 using WebShop.Application.Models.Login;
 using WebShop.Domain.Interfaces;
 using WebShop.Domain.Services;
@@ -27,6 +34,7 @@ namespace WebShop.WebUI
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
+
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<WebShopDbContext>(options =>
@@ -34,6 +42,26 @@ namespace WebShop.WebUI
             services.AddSingleton<WebShopDbContextFactory>(new WebShopDbContextFactory(Configuration.GetConnectionString("SqlConnection")));
 
             services.AddRazorPages();
+            services.AddAuthorizationCore(options =>
+            {
+                options.AddPolicy("Admin",
+                     policy => policy.Requirements.Add(new SelectedRoleRequirement("")));
+            });
+            services.AddSingleton<IAuthorizationHandler, SelectedRoleHandler>();
+
+
+
+            services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+            })
+.AddCookie();
+             
+            services.AddIdentity<IdentityUser, IdentityRole>()
+                .AddEntityFrameworkStores<WebShopDbContext>();
+
             services.AddMediatR(typeof(LoginCommand).GetTypeInfo().Assembly);
             services.AddScoped<IAuthenticationService, AuthenticationService>();
             services.AddSingleton<LoginModel>();
@@ -42,6 +70,7 @@ namespace WebShop.WebUI
 
             services.AddMvc().AddRazorPagesOptions(options =>
             options.Conventions.AddPageRoute("/LoginPage/LoginPage", ""));
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -63,6 +92,7 @@ namespace WebShop.WebUI
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

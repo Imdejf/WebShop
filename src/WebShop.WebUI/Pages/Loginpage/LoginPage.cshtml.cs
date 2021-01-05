@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Threading.Tasks;
@@ -18,19 +19,21 @@ namespace WebShop.WebUI.Pages.LoginPage
         public LoginModel login { get; set; }
         public void OnGet()
         {
-           
+
         }
         public async Task<IActionResult> OnPostAsync()
         {
-            if(login.Username != null || login.Password != null)
+            if (login.Username != null || login.Password != null)
             {
-              var task = await _mediator.Send(new LoginCommand 
-                { Username = login.Username, 
-                  Password = login.Password 
-                });
-                if(task != 0)
+                var task = await _mediator.Send(new LoginCommand
                 {
-                   return RedirectToPage("/Home", "Display");
+                    Username = login.Username,
+                    Password = login.Password
+                });
+                if (task != 0)
+                {
+
+                    return RedirectToPage("/Menu", "Display");
                 }
             }
             return Page();

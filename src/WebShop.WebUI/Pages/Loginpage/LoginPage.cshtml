@@ -3,11 +3,97 @@
 @{
     ViewData["Title"] = "LoginPage";
 }
-<h1>LoginPage</h1>
-<form method="post">
-    <input type="text" asp-for="login.Username" placeholder="Username" />
-    <input type="password" asp-for="login.Password" placeholder="Password" />
-    <button type="submit">Submit</button>
-</form>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+    <style>
+        * {
+            margin: 0;
+        }
 
+        #login-div {
+            border: 1px solid #ccc;
+            border-radius: 2%;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            font-family: Tahoma;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-48%, -48%);
+        }
+
+        .input {
+            margin: 5px;
+            font-size: 20px;
+        }
+
+        .button {
+            margin: 0px 10px;
+            padding: 10px;
+            border: 1px solid #2546ff;
+            border-radius: 10%;
+            background-color: #2546ff;
+            color: white;
+            font-size: 15px;
+        }
+
+        .neon {
+            text-align: center;
+            font-size: 6.5em;
+            color: navy;
+            letter-spacing: -7px;
+            font-weight: 700;
+            text-transform: uppercase;
+            animation: blur .75s ease-out infinite;
+            text-shadow: 0px 0px 5px navy, 0px 0px 7px navy;
+        }
+
+        @@keyframes blur {
+            from {
+                text-shadow: 0px 0px 10px #fff, 0px 0px 10px #fff, 0px 0px 25px #fff, 0px 0px 25px #fff, 0px 0px 25px #fff, 0px 10px 100px #7B96B8, 0px 10px 100px #7B96B8, 0px -10px 100px #7B96B8, 0px -10px 100px #7B96B8;
+            }
+        }
+    </style>
+</head>
+
+<body style="background-color:lightskyblue;">
+    <div class="container">
+        <div class="neon">
+            <h3 style="text-align:center;margin:5%; font-size:72px;">⚠ Administration panel ⚠</h3>
+        </div>
+        <div id="login-div" style="background-color:aliceblue">
+            <div style="background-color: cornflowerblue; padding: 5px; ">
+                <h3>Sign In</h3>
+            </div>
+            <form method="post">
+                <table>
+                    <tr>
+                        <td>@Html.LabelFor(model => model.login.Username)</td>
+                        <td><input class="input" type="text" asp-for="login.Username" placeholder="Username"  value="Test"/></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>@Html.LabelFor(model => model.login.Password)</td>
+                        <td> <input class="input" type="password" asp-for="login.Password" placeholder="Password" value="Test123"/> </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td style="text-align:end;">
+                            <input type="checkbox" />
+                            <label>Remember me</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <button class="button" type="submit">Submit</button>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
 
