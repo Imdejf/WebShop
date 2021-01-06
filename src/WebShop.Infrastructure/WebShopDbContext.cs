@@ -1,9 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using WebShop.Domain.Entities;
 
 namespace WebShop.Infrastructure
 {
-    public class WebShopDbContext : DbContext
+    public class WebShopDbContext : IdentityDbContext<User,Role,int>
     {
         #region DbSet
         public DbSet<User> Users { get; set; }

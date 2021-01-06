@@ -17,6 +17,7 @@ using WebShop.Application.Authentication.Command;
 using WebShop.Application.Common.Handlers;
 using WebShop.Application.Common.Requirement;
 using WebShop.Application.Models.Login;
+using WebShop.Domain.Entities;
 using WebShop.Domain.Interfaces;
 using WebShop.Domain.Services;
 using WebShop.Infrastructure;
@@ -42,11 +43,7 @@ namespace WebShop.WebUI
             services.AddSingleton<WebShopDbContextFactory>(new WebShopDbContextFactory(Configuration.GetConnectionString("SqlConnection")));
 
             services.AddRazorPages();
-            services.AddAuthorizationCore(options =>
-            {
-                options.AddPolicy("Admin",
-                     policy => policy.Requirements.Add(new SelectedRoleRequirement("")));
-            });
+
             services.AddSingleton<IAuthorizationHandler, SelectedRoleHandler>();
 
 
@@ -57,10 +54,12 @@ namespace WebShop.WebUI
                 options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
                 options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
             })
-.AddCookie();
-             
-            services.AddIdentity<IdentityUser, IdentityRole>()
-                .AddEntityFrameworkStores<WebShopDbContext>();
+            .AddCookie();
+
+            services.AddIdentity<User, Role>(options =>
+            {
+                options.User.RequireUniqueEmail = true;
+            }).AddEntityFrameworkStores<WebShopDbContext>();
 
             services.AddMediatR(typeof(LoginCommand).GetTypeInfo().Assembly);
             services.AddScoped<IAuthenticationService, AuthenticationService>();
