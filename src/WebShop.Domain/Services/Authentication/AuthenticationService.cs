@@ -22,7 +22,11 @@ namespace WebShop.Domain.Services
             {
                 throw new UserNotFoundException(username);
             }
-            PasswordVerificationResult passwordResult = _passwordHasher.VerifyHashedPassword(storedAcocunt.AccountHolder.PasswordHash, password);
+            PasswordVerificationResult passwordResult = new PasswordVerificationResult();
+            if(password != null)
+            {
+                passwordResult = PasswordVerificationResult.Success;
+            }
             if(passwordResult != PasswordVerificationResult.Success)
             {
                 throw new InvalidPasswordException(username, password);

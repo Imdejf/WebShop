@@ -1,12 +1,8 @@
 ﻿using MediatR;
-using Microsoft.AspNet.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System;
-using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using WebShop.Application.Authentication.Command;
 using WebShop.Application.Models.Login;
@@ -17,12 +13,14 @@ namespace WebShop.WebUI.Pages.LoginPage
     public class LoginPageModel : PageModel
     {
         private readonly IMediator _mediator;
-        private Microsoft.AspNetCore.Identity.UserManager<User> UserMgr { get; }
-        private SignInManager<User> SignInMgr { get; }
-        public LoginPageModel(IMediator mediator, Microsoft.AspNetCore.Identity.UserManager<User> userManager, SignInManager<User> signInManager)
+        private readonly SignInManager<User> _signInManager;
+        private readonly UserManager<User> _userManager;
+        private readonly RoleManager<Role> _roleManager;
+        public LoginPageModel(IMediator mediator, SignInManager<User> signInManager, UserManager<User> userManager,RoleManager<Role> roleManager)
         {
-            UserMgr = userManager;
-            SignInMgr = signInManager;
+            _signInManager = signInManager;
+            _userManager = userManager;
+            _roleManager = roleManager;
             _mediator = mediator;
         }
         [BindProperty]
@@ -40,9 +38,11 @@ namespace WebShop.WebUI.Pages.LoginPage
                     Username = login.Username,
                     Password = login.Password
                 });
-                if (task != 0)
+                if (task != null)
                 {
-
+                    var userId = Convert.ToString(task.AccountHolder.Id);
+                    var result = await _userManager.FindByIdAsync(userId);
+                    await _signInManager.SignInAsync(task.AccountHolder, isPersistent: false);
                     return RedirectToPage("/Menu", "Display");
                 }
             }

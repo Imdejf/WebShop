@@ -1,17 +1,12 @@
-﻿@page
-@model WebShop.WebUI.Pages.MenuModel
-@{
-    ViewData["Title"] = "Home";
-}
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 
 <html>
 <head>
-<link href="~/css/Menu.css" rel="stylesheet"/>
-<script type="text/javascript" src="~/js/Menu.js"></script>
+    <link href="~/css/Menu.css" rel="stylesheet" />
+    <script type="text/javascript" src="~/js/Menu.js"></script>
 </head>
 <body>
-    @if(User.Identity.IsAuthenticated)
+    @if (User.Identity.IsAuthenticated)
     {
         <div>
             <a>dwakodwiaojdiojwajdoijwaodjwioajdoaijdjwaoa</a>
@@ -195,9 +190,17 @@
                     <i class="fa fa-power-off"></i>
                 </a>
             </div>
-        </nav> 
+        </nav>
         <!-- page-content" -->
     </div>
     <!-- page-wrapper -->
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+    <!-- footer -->
+    <footer>
+    </footer>
 </body>
 </html>
